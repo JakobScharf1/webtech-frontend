@@ -12,6 +12,7 @@
   "dependencies": {
     "@vue/cli-plugin-babel": "^5.0.8",
     "babel": "^6.23.0",
+    "bootstrap": "^5.2.3",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0"
   },
