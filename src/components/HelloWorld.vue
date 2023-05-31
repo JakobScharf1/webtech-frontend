@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <script setup>
 defineProps({
   msg: {
