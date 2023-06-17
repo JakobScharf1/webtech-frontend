@@ -8,6 +8,36 @@ import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
 /* eslint-enable */
 </script>
+<script>
+export default {
+  name: 'DynamicForm',
+  props: ['title'],
+  data () {
+    return {
+      items: [],
+      nameField: '',
+      claims: '',
+      accessToken: '',
+      filterCrit: '',
+    };
+  },
+  methods: {
+    loadInventoryObject() {
+      const endpoint = 'http://localhost:8080/inventoryObject';
+      const requestOptions = {
+        method: 'GET',
+        redirect: 'follow',
+      };
+      fetch(endpoint, requestOptions)
+          .then(response => response.json())
+          .then(result => result.forEach(inventoryObject => {
+            this.items.push(inventoryObject);
+          }))
+          .catch(error => console.log('error', error));
+    }
+  }
+}
+</script>
 
 <template>
   <div class="search">

@@ -17,5 +17,10 @@ module.exports = {
     'vue',
   ],
   rules: {
+    "semi": "off",
+    "semi-spacing": "off",
+    "semi-style": "off",
+    "comma-spacing": "off",
+    "comma-style": "off",
   },
 };
