@@ -9,9 +9,7 @@ import TheWelcome from '../components/DynamicForm.vue';
   </main>
 </template>
 
-<script setup>
-  import TheWelcome from '../components/DynamicForm.vue';
-
+<script>
   export default {
     name: 'HomeView',
 
