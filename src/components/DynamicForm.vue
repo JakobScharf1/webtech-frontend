@@ -16,9 +16,9 @@ export default {
     return {
       items: [],
       nameField: '',
+      amountField: '',
       claims: '',
       accessToken: '',
-      filterCrit: '',
     };
   },
   methods: {
@@ -34,16 +34,36 @@ export default {
             this.items.push(inventoryObject);
           }))
           .catch(error => console.log('error', error));
-    }
+    },
+    save () {
+      const endpoint = 'http://localhost:8080/inventoryObject'
+      const data = {
+        name: this.nameField,
+        amount: this.amountField
+      }
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }
+      fetch(endpoint, requestOptions)
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data)
+          })
+          .catch(error => console.log('error', error))
+    },
   }
 }
 </script>
 
 <template>
   <div class="search">
-    <input id="nameField" class="form-control" v-model="nameField" placeholder="Name" type="text" ref="nameInput" @keyup.enter="search()">
-    <button id="searchButton" class="btn btn-primary" type="button" @click="search()">Suchen</button>
-    <input id="filterField" class="form-control" v-model="filterCrit" placeholder="Filter">
+    <input id="nameField" class="form-control" v-model="nameField" placeholder="Name" type="text" ref="nameInput">
+    <input id="amountField" class="form-control" v-model="amountField" placeholder="Anzahl" type="number" ref="amountInput" @keyup.enter="save()">
+    <button id="searchButton" class="btn btn-primary" type="button" @click="save()">Speichern</button>
   </div>
 
 </template>
@@ -54,13 +74,14 @@ export default {
   margin-right: 10px;
 }
 
+#amountField{
+  margin-right: 10px;
+}
+
 #searchButton{
   margin-right: 10px;
 }
 
-#filterField{
-
-}
  .search{
     width: 500px;
     margin: 25px;
