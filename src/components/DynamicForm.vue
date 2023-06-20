@@ -1,6 +1,5 @@
 <script setup>
 /* eslint-disable */
-import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
 import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
@@ -14,15 +13,15 @@ export default {
   props: ['title'],
   data () {
     return {
-      items: [],
+      objects: [],
       nameField: '',
       amountField: '',
-      claims: '',
-      accessToken: '',
     };
   },
+
   methods: {
-    loadInventoryObject() {
+
+    loadInventoryObjects() {
       const endpoint = 'http://localhost:8080/inventoryObject';
       const requestOptions = {
         method: 'GET',
@@ -31,11 +30,12 @@ export default {
       fetch(endpoint, requestOptions)
           .then(response => response.json())
           .then(result => result.forEach(inventoryObject => {
-            this.items.push(inventoryObject);
+            this.objects.push(inventoryObject);
           }))
           .catch(error => console.log('error', error));
     },
-    save () {
+
+    save() {
       const endpoint = 'http://localhost:8080/inventoryObject'
       const data = {
         name: this.nameField,
@@ -55,13 +55,8 @@ export default {
           })
           .catch(error => console.log('error', error))
     },
-    async created () {
-      await this.setup()
-      this.loadInventoryObject()
-    },
-    mounted () {
-    },
-    getInventoryObject () {
+
+    getInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const requestOptions = {
         method: 'GET',
@@ -74,7 +69,7 @@ export default {
           .catch(error => console.log('error', error))
     },
 
-    createInventoryObject () {
+    createInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const data = {
         inventoryObjects: this.getInventoryObject()
@@ -91,7 +86,7 @@ export default {
           .catch(error => console.log('error', error))
     },
 
-    updateInventoryObject () {
+    updateInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const data = {
         inventoryObjects: this.getInventoryObject()
@@ -108,7 +103,7 @@ export default {
           .catch(error => console.log('error', error))
     },
 
-    deleteInventoryObject () {
+    deleteInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const requestOptions = {
         method: 'DELETE',
@@ -119,6 +114,12 @@ export default {
           .then(response => response.json())
           .then(data => console.log('Success', data))
           .catch(error => console.log('error', error))
+    },
+  },
+
+  watch: {
+    objects: function(){
+      return this.loadInventoryObjects()
     }
   }
 }
@@ -142,9 +143,9 @@ export default {
       <!--<tr v-if="items.length===0">
         <td colspan="2">Noch keine Datensätze vorhanden.</td>
       </tr>-->
-      <tr v-for="item in items" :key="item.id">
-        <td>{{item.name}}</td>
-        <td>{{item.amount}}</td>
+      <tr v-for="object in objects" :key="object.id">
+        <td>{{object.name}}</td>
+        <td>{{object.amount}}</td>
       </tr>
       <tr>
         <td>{{nameField}}</td>

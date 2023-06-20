@@ -1,5 +1,10 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router';
+  import { RouterLink, RouterView } from 'vue-router';
+</script>
+<script>
+  export default {
+    name: 'app',
+  }
 </script>
 
 <template>
