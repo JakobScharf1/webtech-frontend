@@ -150,6 +150,9 @@ export default {
       <tr>
         <td>{{nameField}}</td>
         <td>{{amountField}}</td>
+        <td>
+          <button id="searchButton" class="btn btn-primary" type="button">Hallo</button>
+        </td>
       </tr>
       </tbody>
     </table>
