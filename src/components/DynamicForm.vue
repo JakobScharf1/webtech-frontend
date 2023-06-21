@@ -130,13 +130,14 @@ export default {
     <input id="nameField" class="form-control" v-model="nameField" placeholder="Name" type="text" ref="nameInput">
     <input id="amountField" class="form-control" v-model="amountField" placeholder="Anzahl" type="number" ref="amountInput" @keyup.enter="save()">
     <button id="searchButton" class="btn btn-primary" type="button" @click="save()">Speichern</button>
+    <button id="loadButton" class="btn btn-primary" type="button" @click="loadInventoryObjects()">Laden</button>
   </div>
   <div>
     <table>
       <thead>
-      <tr>
-        <th id="nameCol">Name</th>
-        <th id="amountCol">Anzahl</th>
+      <tr class="tableBorder">
+        <th id="nameCol"><b>Name</b></th>
+        <th id="amountCol"><b>Anzahl</b></th>
       </tr>
       </thead>
       <tbody>
@@ -187,5 +188,9 @@ export default {
 
 #amountCol{
   width: 25%;
+}
+
+.tableBorder{
+  border: thin darkgray;
 }
 </style>

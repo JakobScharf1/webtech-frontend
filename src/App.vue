@@ -9,14 +9,12 @@
 
 <template>
     <img alt="company logo" class="logo" src="@/assets/logo_big.png" />
-
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-
   <RouterView />
 </template>
 
@@ -84,4 +82,5 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+
 </style>
