@@ -1,25 +1,15 @@
-/*import { shallowMount, flushPromises } from '@vue/test-utils'
+import { shallowMount, flushPromises } from '@vue/test-utils'
 import DynamicForm from '@/components/DynamicForm.vue'
 
 describe('dynamic form', () => {
     const emptyResponse = []
     const twoItemResponse = [
-        { id: 1, name: 'Schere', price: 42 },
-        { id: 2, name: 'Messer', price: 13 }
+        { id: 1, name: 'Kasten Bier Hell', amount: 16 },
+        { id: 2, name: 'Flasche Smirnoff Vodka', amount: 6 }
     ]
 
     beforeEach(() => {
         fetch.resetMocks()
-    })
-
-    it('should render the title passed to it', () => {
-        fetch.mockResponseOnce(JSON.stringify(emptyResponse))
-
-        const title = 'This is a title!'
-        const wrapper = shallowMount(DynamicForm, {
-            props: { title }
-        })
-        expect(wrapper.text()).toMatch(title)
     })
 
     it('should render the items from the backend', async () => {
@@ -36,11 +26,11 @@ describe('dynamic form', () => {
     it('should render message when no items received from backend', async () => {
         fetch.mockResponseOnce(JSON.stringify(emptyResponse))
 
-        const msg = 'No products yet'
+        const msg = 'Noch keine Datensätze vorhanden'
         const wrapper = shallowMount(DynamicForm)
 
         await flushPromises()
 
         expect(wrapper.text()).toContain(msg)
     })
-})*/
+})

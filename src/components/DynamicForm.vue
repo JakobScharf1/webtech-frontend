@@ -141,9 +141,9 @@ export default {
       </tr>
       </thead>
       <tbody>
-      <!--<tr v-if="items.length===0">
+      <tr v-if="items.length===0">
         <td colspan="2">Noch keine Datensätze vorhanden.</td>
-      </tr>-->
+      </tr>
       <tr v-for="object in objects" :key="object.id">
         <td>{{object.name}}</td>
         <td>{{object.amount}}</td>
