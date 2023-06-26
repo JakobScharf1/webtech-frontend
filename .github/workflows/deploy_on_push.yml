@@ -39,7 +39,7 @@ jobs:
         # The `npm ci` command can only install with an existing package-lock.json
         # run: npm ci
       - name: Build project
-        run: npm run build
+        run: npm run dev
       - name: Configure HTTP Not Found for Vue Router
         run: cp ./dist/index.html ./dist/404.html
       - name: Setup Pages
