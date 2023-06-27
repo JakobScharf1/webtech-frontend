@@ -19,8 +19,25 @@ export default {
     };
   },
 
+  mounted() {
+    this.loadInventoryObjects();
+  },
+
   methods: {
 
+    async loadInventoryObjects() {
+      try {
+        const response = await fetch('http://localhost:8080/inventoryObject');
+        if (!response.ok) {
+          throw new Error('Fehler beim Laden der Daten.');
+        }
+        this.objects = await response.json();
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    /*
     loadInventoryObjects() {
       const endpoint = 'http://localhost:8080/inventoryObject';
       const requestOptions = {
@@ -33,27 +50,31 @@ export default {
             this.objects.push(inventoryObject);
           }))
           .catch(error => console.log('error', error));
-    },
+    },*/
 
-    save() {
-      const endpoint = 'http://localhost:8080/inventoryObject'
-      const data = {
-        name: this.nameField,
-        amount: this.amountField
+
+    async save() {
+      try {
+        const data = {
+          name: this.nameField,
+          amount: this.amountField,
+        };
+        const response = await fetch('http://localhost:8080/inventoryObject', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+          throw new Error('Fehler beim Speichern der Daten.');
+        }
+        this.nameField = '';
+        this.amountField = '';
+        await this.loadInventoryObjects();
+      } catch (error) {
+        console.error(error);
       }
-      const requestOptions = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-      fetch(endpoint, requestOptions)
-          .then(response => response.json())
-          .then(data => {
-            console.log('Success:', data)
-          })
-          .catch(error => console.log('error', error))
     },
 
     getInventoryObject() {
@@ -68,7 +89,7 @@ export default {
           .then(result => result.forEach(inventoryObject => this.inventoryObjects.push(inventoryObject)))
           .catch(error => console.log('error', error))
     },
-
+/*
     createInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const data = {
@@ -85,7 +106,7 @@ export default {
           .then(data => console.log('Success', data))
           .catch(error => console.log('error', error))
     },
-
+*/
     updateInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const data = {
@@ -117,11 +138,6 @@ export default {
     },
   },
 
-  watch: {
-    objects: function(){
-      return this.loadInventoryObjects()
-    }
-  }
 }
 </script>
 
@@ -141,20 +157,20 @@ export default {
       </tr>
       </thead>
       <tbody>
-      <tr v-if="items.length===0">
+      <tr v-if="objects.length === 0">
         <td colspan="2">Noch keine Datensätze vorhanden.</td>
       </tr>
       <tr v-for="object in objects" :key="object.id">
         <td>{{object.name}}</td>
         <td>{{object.amount}}</td>
       </tr>
-      <tr>
+      <!--<tr>
         <td>{{nameField}}</td>
         <td>{{amountField}}</td>
         <td>
           <button id="searchButton" class="btn btn-primary" type="button">Hallo</button>
         </td>
-      </tr>
+      </tr>-->
       </tbody>
     </table>
   </div>
