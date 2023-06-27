@@ -77,6 +77,10 @@ export default {
       }
     },
 
+    editObject(object){
+      object.editing = true;
+    },
+
     getInventoryObject() {
       const endpoint = 'http://localhost:8080/inventoryObject/{id}'
       const requestOptions = {
@@ -89,39 +93,27 @@ export default {
           .then(result => result.forEach(inventoryObject => this.inventoryObjects.push(inventoryObject)))
           .catch(error => console.log('error', error))
     },
-/*
-    createInventoryObject() {
-      const endpoint = 'http://localhost:8080/inventoryObject/{id}'
-      const data = {
-        inventoryObjects: this.getInventoryObject()
-      }
-      const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-      }
 
-      fetch(endpoint, requestOptions)
-          .then(response => response.json())
-          .then(data => console.log('Success', data))
-          .catch(error => console.log('error', error))
-    },
-*/
-    updateInventoryObject() {
-      const endpoint = 'http://localhost:8080/inventoryObject/{id}'
-      const data = {
-        inventoryObjects: this.getInventoryObject()
+    async updateInventoryObject(object) {
+      try {
+        const data = {
+          name: object.name,
+          amount: object.amount,
+        };
+        const response = await fetch(`http://localhost:8080/inventoryObject/${object.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+          throw new Error('Fehler beim Speichern der Daten.');
+        }
+        object.editing = false;
+      } catch (error) {
+        console.error(error);
       }
-      const requestOptions = {
-        method: 'PUT',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-      }
-
-      fetch(endpoint, requestOptions)
-          .then(response => response.json())
-          .then(data => console.log('Success', data))
-          .catch(error => console.log('error', error))
     },
 
     deleteInventoryObject() {
@@ -154,15 +146,26 @@ export default {
       <tr class="tableBorder">
         <th id="nameCol"><b>Name</b></th>
         <th id="amountCol"><b>Anzahl</b></th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
       <tr v-if="objects.length === 0">
-        <td colspan="2">Noch keine Datensätze vorhanden.</td>
+        <td colspan="3">Noch keine Datensätze vorhanden.</td>
       </tr>
       <tr v-for="object in objects" :key="object.id">
-        <td>{{object.name}}</td>
-        <td>{{object.amount}}</td>
+        <td>
+          <input v-if="object.editing" v-model="object.name" class="form-control" type="text">
+          <span v-else>{{object.name}}</span>
+        </td>
+        <td>
+          <input v-if="object.editing" v-model="object.amount" class="form-control" type="number">
+          <span v-else>{{object.amount}}</span>
+        </td>
+        <td>
+          <button v-if="!object.editing" @click="editObject(object)" class="btn btn-primary">Bearbeiten</button>
+          <button v-else @click="updateInventoryObject(object)" class="btn btn-success">Speichern</button>
+        </td>
       </tr>
       <!--<tr>
         <td>{{nameField}}</td>
