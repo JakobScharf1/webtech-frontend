@@ -1,5 +1,6 @@
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import DynamicForm from '../DynamicForm.vue'
+import fetch from 'node-fetch'
 
 describe('dynamic form', () => {
     const emptyResponse = []
