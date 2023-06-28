@@ -135,15 +135,9 @@ export default {
 
 <template>
   <div class="search">
-    <div class="col-md-6">
       <input id="nameField" class="form-control" v-model="nameField" placeholder="Name" type="text" ref="nameInput">
-    </div>
-    <div class="col-md-6">
       <input id="amountField" class="form-control" v-model="amountField" placeholder="Anzahl" type="number" ref="amountInput" @keyup.enter="save()">
-    </div>
-    <div class="col-12">
       <button id="searchButton" class="btn btn-primary btn-block" type="button" @click="save()">Speichern</button>
-    </div>
   </div>
   <div>
     <table>
