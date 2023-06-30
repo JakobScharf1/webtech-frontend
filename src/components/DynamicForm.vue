@@ -116,17 +116,23 @@ export default {
       }
     },
 
-    deleteInventoryObject() {
-      const endpoint = 'http://localhost:8080/inventoryObject/{id}'
-      const requestOptions = {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
+    async deleteInventoryObject(object) {
+      try {
+        const endpoint = `http://localhost:8080/inventoryObject/${object.id}`
+        const requestOptions = await fetch(`http://localhost:8080/inventoryObject/${object.id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(object),
+        });
+        if (!requestOptions.ok) {
+          throw new Error('Fehler beim Speichern der Daten.');
+        }
+        await this.loadInventoryObjects();
+      } catch(error) {
+        console.error(error);
       }
-
-      fetch(endpoint, requestOptions)
-          .then(response => response.json())
-          .then(data => console.log('Success', data))
-          .catch(error => console.log('error', error))
     },
   },
 
@@ -164,6 +170,10 @@ export default {
         <td>
           <button v-if="!object.editing" @click="editObject(object)" class="btn btn-primary">Bearbeiten</button>
           <button v-else @click="updateInventoryObject(object)" class="btn btn-success">Speichern</button>
+        </td>
+        <td>
+          <button @click="deleteInventoryObject(object)" class="btn btn-danger" style="">Löschen</button>
+
         </td>
       </tr>
       <!--<tr>
