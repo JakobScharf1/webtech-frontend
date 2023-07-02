@@ -1,5 +1,5 @@
 import { shallowMount, flushPromises } from '@vue/test-utils'
-import DynamicForm from '../DynamicForm.vue'
+import DynamicForm from '@/components/DynamicForm.vue'
 import fetch from 'node-fetch'
 
 describe('dynamic form', () => {
