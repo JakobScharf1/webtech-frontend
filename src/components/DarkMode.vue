@@ -1,6 +1,7 @@
 <template>
   <div @click="toggleDarkMode">
-    <font-awesome-icon icon="fa-solid fa-moon" />  </div>
+    <img id="darkmode" src="../../public/thema.png" alt="Dark Mode Icon"/>
+  </div>
 </template>
 
 <script>
@@ -8,9 +9,13 @@ export default {
   name: "DarkMode",
   methods: {
     toggleDarkMode() {
-      const appElement = document.querySelector("#app")
-      appElement.classList.toggle("dark-mode");
+      this.darkMode = !this.darkMode;
     }
+  },
+  data() {
+    return {
+      darkMode: false
+    };
   }
 }
 </script>
@@ -18,7 +23,16 @@ export default {
 <style scoped>
   div {
     cursor: pointer;
-    height: 100px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+  }
+  #darkmode {
+    width: 25px;
   }
 
 </style>
