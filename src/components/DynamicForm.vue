@@ -82,7 +82,7 @@ export default {
     },
 
     getInventoryObject() {
-      const endpoint = 'http://localhost:8080/inventoryObject/{id}'
+      const endpoint = `http://localhost:8080/inventoryObject/${id}`
       const requestOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -100,7 +100,7 @@ export default {
           name: object.name,
           amount: object.amount,
         };
-        const response = await fetch(`http://localhost:8080/inventoryObject/${object.id}`, {
+        const response = await fetch(`http://localhost:8080/inventoryObject/${object.id}/${object.name}/${object.amount}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -135,7 +135,6 @@ export default {
       }
     },
   },
-
 }
 </script>
 
