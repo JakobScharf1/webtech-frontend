@@ -5,10 +5,11 @@ import DynamicForm from '../components/DynamicForm.vue';
 
 <script>
   import DynamicForm from "../components/DynamicForm.vue";
+  import DarkMode from "../components/DarkMode.vue";
 
   export default {
     name: 'HomeView',
-    components: {DynamicForm},
+    components: {DarkMode, DynamicForm},
   }
 </script>
 
@@ -16,4 +17,5 @@ import DynamicForm from '../components/DynamicForm.vue';
   <main>
     <DynamicForm />
   </main>
+  <DarkMode />
 </template>

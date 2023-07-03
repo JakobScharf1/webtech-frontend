@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <img alt="company logo" class="logo" src="@/assets/logo_big.png" />
+    <img alt="inventory system logo" class="logo" src="@/assets/logo_big.png" />
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -33,7 +33,7 @@ header {
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 1rem;
   text-align: center;
   margin-top: 2rem;
 }
@@ -56,6 +56,7 @@ nav a:first-of-type {
   border: 0;
 }
 
+/*
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -81,6 +82,6 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+}*/
 
 </style>

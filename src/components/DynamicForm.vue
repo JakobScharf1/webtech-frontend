@@ -192,10 +192,12 @@ export default {
 
 #nameField{
   margin-right: 10px;
+  width: 60rem;
 }
 
 #amountField{
   margin-right: 10px;
+  width: 16rem;
 }
 
 #searchButton{
@@ -203,10 +205,24 @@ export default {
 }
 
 .search{
-  width: 500px;
+  /*width: 500px;*/
   margin: 25px;
   text-align:center;
   display:flex;
+}
+
+@media (max-width: 600px) {
+  .search {
+    flex-direction: column;
+  }
+  #nameField {
+    width: auto;
+    margin-bottom: 10px;
+  }
+  #amountField {
+    width: auto;
+    margin-bottom: 10px;
+  }
 }
 
 #nameCol{
