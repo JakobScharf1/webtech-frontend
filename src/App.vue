@@ -20,7 +20,7 @@
 <template>
   <div :class="{ 'dark-mode': darkMode }">
     <div class="darkmodeContainer" @click="toggleDarkMode">
-      <img id="darkmodeIcon" src="../../public/thema.png" alt="Dark Mode Icon"/>
+      <img id="darkmodeIcon" src="../public/thema.png" alt="Dark Mode Icon"/>
     </div>
     <img alt="inventory system logo" class="logo" src="@/assets/logo_big.png" />
   <!--
