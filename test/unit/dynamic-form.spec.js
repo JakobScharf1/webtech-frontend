@@ -1,6 +1,7 @@
 import { enableFetchMocks , fetchMock } from 'jest-fetch-mock'
 import { shallowMount, flushPromises } from '@vue/test-utils'
 import DynamicForm from '@/components/DynamicForm.vue';
+import {jest} from '@jest/globals'
 
 global.fetch = fetchMock;
 global.jest = jest;
