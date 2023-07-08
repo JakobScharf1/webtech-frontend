@@ -37,22 +37,6 @@ export default {
       }
     },
 
-    /*
-    loadInventoryObjects() {
-      const endpoint = 'http://localhost:8080/inventoryObject';
-      const requestOptions = {
-        method: 'GET',
-        redirect: 'follow',
-      };
-      fetch(endpoint, requestOptions)
-          .then(response => response.json())
-          .then(result => result.forEach(inventoryObject => {
-            this.objects.push(inventoryObject);
-          }))
-          .catch(error => console.log('error', error));
-    },*/
-
-
     async save() {
       try {
         const data = {
@@ -175,13 +159,6 @@ export default {
 
         </td>
       </tr>
-      <!--<tr>
-        <td>{{nameField}}</td>
-        <td>{{amountField}}</td>
-        <td>
-          <button id="searchButton" class="btn btn-primary" type="button">Hallo</button>
-        </td>
-      </tr>-->
       </tbody>
     </table>
   </div>
