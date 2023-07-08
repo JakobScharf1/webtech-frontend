@@ -1,8 +1,3 @@
-
-<!--<script setup>
-import DynamicForm from '../components/DynamicForm.vue';
-</script>-->
-
 <script>
   import DynamicForm from "../components/DynamicForm.vue";
   import DarkMode from "../components/DarkMode.vue";

@@ -1,7 +1,5 @@
 <template>
-  <div @click="toggleDarkMode">
-    <img id="darkmode" src="../../public/thema.png" alt="Dark Mode Icon"/>
-  </div>
+
 </template>
 
 <script>
